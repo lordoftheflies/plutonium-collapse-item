@@ -87,7 +87,7 @@ Custom property | Description | Default
                     <content select=".item-action"></content>
                     <paper-icon-button class="toogle" icon="[[_toggleIcon]]"></paper-icon-button>
                 </div>
-                <iron-collapse class="content" opened="{{opened}}">
+                <iron-collapse id="collapse" class="content" opened="{{opened}}">
                     <content select=".item-content"></content>
                 </iron-collapse>
             </paper-item-body>
@@ -124,11 +124,21 @@ Custom property | Description | Default
                     reflectToAttribute: true,
                     notify: true
                 },
+                autoClose: {
+                    type: Boolean,
+                    reflectToAttribute: true,
+                    notify: true,
+                    value: false
+                },
                 _toggleIcon: {
                     type: String,
                     computed: '_computeToggleIcon(opened)'
                 }
             },
+            listeners: {
+                'focusout': '_blurContent'
+            },
+
             // Private methods
             /**
              * Fired whenever the status is changed (opened/closed)
@@ -140,9 +150,13 @@ Custom property | Description | Default
                 this.fire('toggle', this);
             },
             _blurContent(event, details) {
-                console.debug(this.is, 'on-blur', details);
-                this.fire('toggle', this);
+                if (this.autoClose) {
+                    console.debug(this.is + ((this.id) ? '#' + this.id : ''), 'on-blur', details);
+                    this.$.collapse.toggle();
+                }
+//                this.fire('blur', this);
             },
+
             _computeToggleIcon: function (opened) {
                 return opened ? 'plutonium-collapse-icons:expand-less' : 'plutonium-collapse-icons:expand-more';
             }

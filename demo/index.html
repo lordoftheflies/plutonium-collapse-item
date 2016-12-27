@@ -21,20 +21,20 @@
 
             <demo-snippet>
                 <template is="dom-bind">
-                    <plutonium-collapse-item icon="icons:favorite" opened>
+                    <plutonium-collapse-item id="pci1" icon="icons:favorite" opened>
                         <div class="item-header">Title</div>
                         <div class="item-action">A</div>
                         <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
-                    <plutonium-collapse-item icon="icons:info">
+                    <plutonium-collapse-item id="pci2" icon="icons:info" auto-close>
                         <div class="item-header">Item 2</div>
                         <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
-                    <plutonium-collapse-item icon="icons:help" header="<b>Header <u>with</u> HTML</b>">
+                    <plutonium-collapse-item id="pci3" icon="icons:help" auto-close header="<b>Header <u>with</u> HTML</b>">
                         <div class="item-header">Item 2</div>
                         <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
-                    <plutonium-collapse-item icon="icons:help" header="Item 3 (with event)" on-toggle="onToggle">
+                    <plutonium-collapse-item  id="pci4"icon="icons:help" auto-close header="Item 3 (with event)" on-toggle="onToggle">
                         <div class="item-header">Item 2</div>
                         <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
