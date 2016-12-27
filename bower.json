@@ -1,6 +1,22 @@
 {
   "name": "plutonium-collapse-item",
+  "authors": [
+    "lordoftheflies <heglas11@gmail.com>"
+  ],
   "description": "A Material Design item with header and collapsible content (Polymer 1.x)",
+    "keywords": [
+    "plutonium",
+    "web-components",
+    "polymer",
+    "material design",
+    "lists",
+    "item"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "homepage": "https://github.com/lordoftheflies/plutonium-collapse-item",
+  "license": "MIT",
   "main": "plutonium-collapse-item.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
