@@ -70,13 +70,13 @@ Custom property | Description | Default
                     <!-- Polymer's capitalization from hyphens converts `inner-h-t-m-l` to
                             `innerHTML`, and then sets `header` as it's property value -->
                     <div class="flex">
-                        <content select=".header"></content>
+                        <content select=".item-header"></content>
                     </div>
-                    <content select=".action"></content>
+                    <content select=".item-action"></content>
                     <paper-icon-button class="toogle" icon="[[_toggleIcon]]"></paper-icon-button>
                 </div>
                 <iron-collapse class="content" opened="{{opened}}">
-                    <content select=".content"></content>
+                    <content select=".item-content"></content>
                 </iron-collapse>
             </paper-item-body>
         </paper-item>
