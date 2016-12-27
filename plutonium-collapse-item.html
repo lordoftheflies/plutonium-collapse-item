@@ -69,7 +69,9 @@ Custom property | Description | Default
                     </template>
                     <!-- Polymer's capitalization from hyphens converts `inner-h-t-m-l` to
                             `innerHTML`, and then sets `header` as it's property value -->
-                    <div class="flex" inner-h-t-m-l="[[header]]"></div>
+                    <div class="flex">
+                        <content select=".header"></content>
+                    </div>
                     <content select=".action"></content>
                     <paper-icon-button class="toogle" icon="[[_toggleIcon]]"></paper-icon-button>
                 </div>
@@ -87,10 +89,10 @@ Custom property | Description | Default
         Polymer({
             is: 'plutonium-collapse-item',
             properties: {
-                /**
-                 * Text in the header row
-                 */
-                header: String,
+//                /**
+//                 * Text in the header row
+//                 */
+//                header: String,
                 /**
                  * The name of the icon to use. The name should be of the
                  * form: iconset_name:icon_name.
