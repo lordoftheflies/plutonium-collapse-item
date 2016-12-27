@@ -18,27 +18,25 @@
     <body>
         <div class="vertical-section-container centered">
             <h3>Basic plutonium-collapse-item demo</h3>
-            <demo-snippet>
-                <template>
-                    <plutonium-collapse-item></plutonium-collapse-item>
-                </template>
-            </demo-snippet>
 
             <demo-snippet>
                 <template is="dom-bind">
-                    <plutonium-collapse-item icon="icons:favorite" header="Item 1" opened>
-                        <div class="header">Title</div>
-                        <div class="action">A</div>
-                        <div class="content">Lots of very interesting content.</div>
+                    <plutonium-collapse-item icon="icons:favorite" opened>
+                        <div class="item-header">Title</div>
+                        <div class="item-action">A</div>
+                        <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
-                    <plutonium-collapse-item icon="icons:info" header="Item 2">
-                        Lots of very interesting content.
+                    <plutonium-collapse-item icon="icons:info">
+                        <div class="item-header">Item 2</div>
+                        <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
                     <plutonium-collapse-item icon="icons:help" header="<b>Header <u>with</u> HTML</b>">
-                        Lots of very interesting content.
+                        <div class="item-header">Item 2</div>
+                        <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
                     <plutonium-collapse-item icon="icons:help" header="Item 3 (with event)" on-toggle="onToggle">
-                        Lots of very interesting content.
+                        <div class="item-header">Item 2</div>
+                        <div class="item-content">Lots of very interesting content.</div>
                     </plutonium-collapse-item>
                 </template>
 

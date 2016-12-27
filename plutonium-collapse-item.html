@@ -59,6 +59,18 @@ Custom property | Description | Default
                 @apply(--paper-font-body1);
                 @apply(--plutonium-collapse-item-content);
             }
+
+
+            paper-item-body div.header .item-action {
+                display: none;
+            }
+
+            paper-item-body:hover div.header .item-action {
+                display: inline-block;
+            }
+
+            item-action
+
         </style>
 
         <paper-item>
@@ -125,6 +137,10 @@ Custom property | Description | Default
              */
             _toggleOpened: function (e) {
                 this.opened = !this.opened;
+                this.fire('toggle', this);
+            },
+            _blurContent(event, details) {
+                console.debug(this.is, 'on-blur', details);
                 this.fire('toggle', this);
             },
             _computeToggleIcon: function (opened) {
