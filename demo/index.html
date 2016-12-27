@@ -1,28 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>plutonium-collapse-item demo</title>
+        <title>plutonium-collapse-item demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../plutonium-collapse-item.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+        <link rel="import" href="../plutonium-collapse-item.html">
 
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic plutonium-collapse-item demo</h3>
-      <demo-snippet>
-        <template>
-          <plutonium-collapse-item></plutonium-collapse-item>
-        </template>
-      </demo-snippet>
-    </div>
-  </body>
+        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
+    </head>
+    <body>
+        <div class="vertical-section-container centered">
+            <h3>Basic plutonium-collapse-item demo</h3>
+            <demo-snippet>
+                <template>
+                    <plutonium-collapse-item></plutonium-collapse-item>
+                </template>
+            </demo-snippet>
+
+            <demo-snippet>
+                <template is="dom-bind">
+                    <plutonium-collapse-item icon="icons:favorite" header="Item 1" opened>
+                        Lots of very interesting content.
+                    </plutonium-collapse-item>
+                    <plutonium-collapse-item icon="icons:info" header="Item 2">
+                        Lots of very interesting content.
+                    </plutonium-collapse-item>
+                    <plutonium-collapse-item icon="icons:help" header="<b>Header <u>with</u> HTML</b>">
+                        Lots of very interesting content.
+                    </plutonium-collapse-item>
+                    <plutonium-collapse-item icon="icons:help" header="Item 3 (with event)" on-toggle="onToggle">
+                        Lots of very interesting content.
+                    </plutonium-collapse-item>
+                </template>
+
+                <script>
+                    var scope = document.querySelector('template[is=dom-bind]');
+                    scope.onToggle = function () {
+                        alert('Toggled');
+                    };
+                </script>
+            </demo-snippet>
+
+            <h4>Styling</h4>
+            <demo-snippet>
+                <template>
+                    <style is="custom-style">
+                        .styled {
+                            --plutonium-collapse-item-header: {
+                                color: red;
+                                font-size: 12px;
+                            }
+                            --plutonium-collapse-item-content: {
+                                color: green;
+                            }
+                        }
+                    </style>
+                    <plutonium-collapse-item class="styled" icon="icons:favorite" header="Item 1">
+                        Lots of very interesting content.
+                    </plutonium-collapse-item>
+                </template>
+            </demo-snippet>
+        </div>
+    </body>
 </html>

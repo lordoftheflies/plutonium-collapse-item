@@ -1,34 +1,131 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-item/paper-item-body.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
 
 <!--
-`plutonium-collapse-item`
-A Material Design item with header and collapsible content (Polymer 1.x)
-
-@demo demo/index.html 
+A Material Design [item with header and collapsible content](https://www.google.com/design/spec/components/lists.html)
+### Example
+```html
+<plutonium-collapse-item icon="icons:favorite" header="Item 1" opened>
+  Lots of very interesting content.
+</plutonium-collapse-item>
+<plutonium-collapse-item icon="icons:info" header="Item 2">
+  Lots of very interesting content.
+</plutonium-collapse-item>
+<plutonium-collapse-item icon="icons:help" header="Item 3">
+  Lots of very interesting content.
+</plutonium-collapse-item>
+```
+### Styling
+The following custom properties and mixins are available for styling:
+Custom property | Description | Default
+----------------|-------------|----------
+--plutonium-collapse-item-header|Mixin applied to header of collapsible item|{}
+--plutonium-collapse-item-content|Mixin applied to collapsible content|{}
+--plutonium-collapse-item-icon|Mixin applied to icon|{}
+@demo demo/index.html
 -->
-
 <dom-module id="plutonium-collapse-item">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]</h2>
-  </template>
 
-  <script>
-    Polymer({
+    <template>
 
-      is: 'plutonium-collapse-item',
+        <style>
+            .header {
+                min-height: 48px;
+                color: var(--primary-text-color);
+                @apply(--layout-horizontal);
+                @apply(--layout-center-center);
+                @apply(--paper-font-subhead);
+                @apply(--plutonium-collapse-item-header);
+            }
+            .icon {
+                margin-right: 24px;
+                --iron-icon-height: 32px;
+                --iron-icon-width: 32px;
+                @apply(--plutonium-collapse-item-icon);
+            }
+            .icon,.toogle {
+                color: var(--disabled-text-color);
+            }
+            .content {
+                color: var(--primary-text-color);
+                @apply(--paper-font-body1);
+                @apply(--plutonium-collapse-item-content);
+            }
+        </style>
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'plutonium-collapse-item',
-        },
-      },
+        <paper-item>
+            <paper-item-body>
+                <div class="header" on-tap="_toggleOpened">
+                    <template is="dom-if" if="[[icon]]">
+                        <iron-icon class="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
+                    </template>
+                    <!-- Polymer's capitalization from hyphens converts `inner-h-t-m-l` to
+                            `innerHTML`, and then sets `header` as it's property value -->
+                    <div class="flex" inner-h-t-m-l="[[header]]"></div>
+                    <content select=".action"></content>
+                    <paper-icon-button class="toogle" icon="[[_toggleIcon]]"></paper-icon-button>
+                </div>
+                <iron-collapse class="content" opened="{{opened}}">
+                    <content select=".content"></content>
+                </iron-collapse>
+            </paper-item-body>
+        </paper-item>
 
-    });
-  </script>
+    </template>
 </dom-module>
+
+<script>
+    (function () {
+        Polymer({
+            is: 'plutonium-collapse-item',
+            properties: {
+                /**
+                 * Text in the header row
+                 */
+                header: String,
+                /**
+                 * The name of the icon to use. The name should be of the
+                 * form: iconset_name:icon_name.
+                 */
+                icon: String,
+                /**
+                 * If using plutonium-collapse-item without an iconset, you can set the
+                 * src to be the URL of an individual icon image file. Note that
+                 * this will take precedence over a given icon attribute.
+                 */
+                src: String,
+                /**
+                 * True if the content section is opened
+                 */
+                opened: {
+                    type: Boolean,
+                    reflectToAttribute: true,
+                    notify: true
+                },
+                _toggleIcon: {
+                    type: String,
+                    computed: '_computeToggleIcon(opened)'
+                }
+            },
+            // Private methods
+            /**
+             * Fired whenever the status is changed (opened/closed)
+             *
+             * @event toggle
+             */
+            _toggleOpened: function (e) {
+                this.opened = !this.opened;
+                this.fire('toggle', this);
+            },
+            _computeToggleIcon: function (opened) {
+                return opened ? 'icons:expand-less' : 'icons:expand-more';
+            }
+        });
+    })();
+</script>
