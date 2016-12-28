@@ -152,7 +152,7 @@ Custom property | Description | Default
             _blurContent(event, details) {
                 if (this.autoClose) {
                     console.debug(this.is + ((this.id) ? '#' + this.id : ''), 'on-blur', details);
-                    this.$.collapse.toggle();
+                    this.$.collapse.hide();
                 }
 //                this.fire('blur', this);
             },
