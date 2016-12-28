@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <!--<link rel="import" href="../iron-icons/iron-icons.html">-->
 <link rel="import" href="../iron-collapse/iron-collapse.html">
@@ -36,7 +37,7 @@ Custom property | Description | Default
 
     <template>
 
-        <style>
+        <style include="iron-flex">
             .header {
                 min-height: 48px;
                 color: var(--primary-text-color);
@@ -60,16 +61,25 @@ Custom property | Description | Default
                 @apply(--plutonium-collapse-item-content);
             }
 
-
-            paper-item-body div.header .item-action {
+            
+            :host .header .action-bar {
                 display: none;
             }
-
-            paper-item-body:hover div.header .item-action {
+            
+            :host .header:hover .action-bar {
                 display: inline-block;
             }
 
-            item-action
+/*            :host .item-action::content  {
+                display: none;
+                background-color: red;
+            }
+
+            :host:hover .item-action::content {
+                display: inline-block;
+            }*/
+
+            /*item-action*/
 
         </style>
 
@@ -84,7 +94,9 @@ Custom property | Description | Default
                     <div class="flex">
                         <content select=".item-header"></content>
                     </div>
-                    <content select=".item-action"></content>
+                    <div class="action-bar">
+                        <content select=".item-action"></content>
+                    </div>
                     <paper-icon-button class="toogle" icon="[[_toggleIcon]]"></paper-icon-button>
                 </div>
                 <iron-collapse id="collapse" class="content" opened="{{opened}}">
