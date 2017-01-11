@@ -144,7 +144,7 @@ Custom property | Description | Default
             this.opened = !this.opened;
             this.fire('toggle', this);
         },
-        _blurContent(event, details) {
+        _blurContent: function(event, details) {
             if (this.autoClose) {
                 console.debug(this.is + ((this.id) ? '#' + this.id : ''), 'on-blur', details);
                 this.$.collapse.hide();
