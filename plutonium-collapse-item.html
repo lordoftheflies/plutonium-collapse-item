@@ -140,7 +140,7 @@ Custom property | Description | Default
          *
          * @event toggle
          */
-        _toggleOpened: function (e) {
+        _toggleOpened: function(e) {
             this.opened = !this.opened;
             this.fire('toggle', this);
         },
@@ -150,8 +150,7 @@ Custom property | Description | Default
                 this.$.collapse.hide();
             }
         },
-
-        _computeToggleIcon: function (opened) {
+        _computeToggleIcon: function(opened) {
             return opened ? 'plutonium-collapse-icons:expand-less' : 'plutonium-collapse-icons:expand-more';
         }
     });
