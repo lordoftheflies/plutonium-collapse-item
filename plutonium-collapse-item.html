@@ -1,7 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
-<!--<link rel="import" href="../iron-icons/iron-icons.html">-->
 <link rel="import" href="../iron-collapse/iron-collapse.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-item/paper-item.html">
@@ -34,10 +33,10 @@ Custom property | Description | Default
 @demo demo/index.html
 -->
 <dom-module id="plutonium-collapse-item">
-
     <template>
 
         <style include="iron-flex">
+
             .header {
                 min-height: 48px;
                 color: var(--primary-text-color);
@@ -46,42 +45,31 @@ Custom property | Description | Default
                 @apply(--paper-font-subhead);
                 @apply(--plutonium-collapse-item-header);
             }
+
             .icon {
                 margin-right: 24px;
                 --iron-icon-height: 32px;
                 --iron-icon-width: 32px;
-                
-                
                 @apply(--plutonium-collapse-item-icon);
             }
+
             .icon, .toogle {
                 color: var(--disabled-text-color);
             }
+
             .content {
                 color: var(--primary-text-color);
                 @apply(--paper-font-body1);
                 @apply(--plutonium-collapse-item-content);
             }
 
-            
             :host .header .action-bar {
                 display: none;
             }
-            
+
             :host .header:hover .action-bar {
                 display: inline-block;
             }
-
-/*            :host .item-action::content  {
-                display: none;
-                background-color: red;
-            }
-
-            :host:hover .item-action::content {
-                display: inline-block;
-            }*/
-
-            /*item-action*/
 
         </style>
 
@@ -91,8 +79,6 @@ Custom property | Description | Default
                     <template is="dom-if" if="[[icon]]">
                         <iron-icon class="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
                     </template>
-                    <!-- Polymer's capitalization from hyphens converts `inner-h-t-m-l` to
-                            `innerHTML`, and then sets `header` as it's property value -->
                     <div class="flex">
                         <content select=".item-header"></content>
                     </div>
@@ -111,69 +97,62 @@ Custom property | Description | Default
 </dom-module>
 
 <script>
-    (function () {
-        Polymer({
-            is: 'plutonium-collapse-item',
-            properties: {
-//                /**
-//                 * Text in the header row
-//                 */
-//                header: String,
-                /**
-                 * The name of the icon to use. The name should be of the
-                 * form: iconset_name:icon_name.
-                 */
-                icon: String,
-                /**
-                 * If using plutonium-collapse-item without an iconset, you can set the
-                 * src to be the URL of an individual icon image file. Note that
-                 * this will take precedence over a given icon attribute.
-                 */
-                src: String,
-                /**
-                 * True if the content section is opened
-                 */
-                opened: {
-                    type: Boolean,
-                    reflectToAttribute: true,
-                    notify: true
-                },
-                autoClose: {
-                    type: Boolean,
-                    reflectToAttribute: true,
-                    notify: true,
-                    value: false
-                },
-                _toggleIcon: {
-                    type: String,
-                    computed: '_computeToggleIcon(opened)'
-                }
-            },
-            listeners: {
-                'focusout': '_blurContent'
-            },
-
-            // Private methods
+    Polymer({
+        is: 'plutonium-collapse-item',
+        properties: {
             /**
-             * Fired whenever the status is changed (opened/closed)
-             *
-             * @event toggle
+             * The name of the icon to use. The name should be of the
+             * form: iconset_name:icon_name.
              */
-            _toggleOpened: function (e) {
-                this.opened = !this.opened;
-                this.fire('toggle', this);
+            icon: String,
+            /**
+             * If using plutonium-collapse-item without an iconset, you can set the
+             * src to be the URL of an individual icon image file. Note that
+             * this will take precedence over a given icon attribute.
+             */
+            src: String,
+            /**
+             * True if the content section is opened
+             */
+            opened: {
+                type: Boolean,
+                reflectToAttribute: true,
+                notify: true
             },
-            _blurContent(event, details) {
-                if (this.autoClose) {
-                    console.debug(this.is + ((this.id) ? '#' + this.id : ''), 'on-blur', details);
-                    this.$.collapse.hide();
-                }
-//                this.fire('blur', this);
+            autoClose: {
+                type: Boolean,
+                reflectToAttribute: true,
+                notify: true,
+                value: false
             },
-
-            _computeToggleIcon: function (opened) {
-                return opened ? 'plutonium-collapse-icons:expand-less' : 'plutonium-collapse-icons:expand-more';
+            _toggleIcon: {
+                type: String,
+                computed: '_computeToggleIcon(opened)'
             }
-        });
-    })();
+        },
+        listeners: {
+            'focusout': '_blurContent'
+        },
+
+        // Private methods
+        /**
+         * Fired whenever the status is changed (opened/closed)
+         *
+         * @event toggle
+         */
+        _toggleOpened: function (e) {
+            this.opened = !this.opened;
+            this.fire('toggle', this);
+        },
+        _blurContent(event, details) {
+            if (this.autoClose) {
+                console.debug(this.is + ((this.id) ? '#' + this.id : ''), 'on-blur', details);
+                this.$.collapse.hide();
+            }
+        },
+
+        _computeToggleIcon: function (opened) {
+            return opened ? 'plutonium-collapse-icons:expand-less' : 'plutonium-collapse-icons:expand-more';
+        }
+    });
 </script>
