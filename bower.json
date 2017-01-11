@@ -9,7 +9,6 @@
     "web-components",
     "polymer",
     "material design",
-    "lists",
     "item"
   ],
   "ignore": [
@@ -17,6 +16,7 @@
   ],
   "homepage": "https://github.com/lordoftheflies/plutonium-collapse-item",
   "license": "MIT",
+  "private": false,
   "main": "plutonium-collapse-item.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
